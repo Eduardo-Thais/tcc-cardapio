@@ -5,12 +5,10 @@ const path    = require('path')
 const cors = require("cors")
 const serveStatic = require('serve-static')
 
-
 const app = express()
 
-app.use(staticFileMiddleware)
-app.use(cors())
 
+app.use(cors)
 
 
 
@@ -25,8 +23,6 @@ app.get(/.*/, function (req, res) {
 const port = process.env.PORT || 8080
 app.listen(port)
 console.log(`app is listening on port: ${port}`)
-
-
 
 
 app.use(function(req, res, next){
