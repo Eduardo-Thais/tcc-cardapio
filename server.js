@@ -1,29 +1,25 @@
 
 
-const express = require('express')
-const path    = require('path')
+
 const cors = require("cors")
-
-
+const express = require('express')
+const serveStatic = require('serve-static')
+const path = require('path')
 
 const app = express()
-const staticFileMiddleware = express.static(path.join(__dirname, 'dist'))
+app.use(cors)
 
+//here we are configuring dist to serve app files
+app.use('/', serveStatic(path.join(__dirname, '/dist')))
 
-
-app.use(staticFileMiddleware)
-app.use(cors())
-
-
-app.get('/', function (req, res) {
-    res.render(path.join(__dirname + '/src/main.js'))
+// this * route is to serve project on different page routes except root `/`
+app.get(/.*/, function (req, res) {
+	res.sendFile(path.join(__dirname, '/dist/index.html'))
 })
 
-
-var port = process.env.PORT || 9090
-app.listen(port, function () {
-    console.log( 'Express serving on 9090!' )
-})
+const port = process.env.PORT || 8080
+app.listen(port)
+console.log(`app is listening on port: ${port}`)
 
 app.use(function(req, res, next){
     res.header("Access-Control-Allow-Origin", '*');
