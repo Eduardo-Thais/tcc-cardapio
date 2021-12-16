@@ -144,7 +144,7 @@ import axios from 'axios'
     }),
     methods: {
       pedido: function(){
-        axios
+        this.axios
             .post('https://cardapiotcc-backend.herokuapp.com/cadastrarPedido/' + this.$route.params.mesa, this.pedidoOut, header("Access-Control-Allow-Methods: POST"))
         
       }
