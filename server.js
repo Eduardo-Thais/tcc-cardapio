@@ -3,16 +3,16 @@
 const express = require('express')
 const path    = require('path')
 const cors = require("cors")
+const serveStatic = require('serve-static')
+
 
 const app = express()
 
 app.use(staticFileMiddleware)
 app.use(cors())
 
-const serveStatic = require('serve-static')
 
 
-const app = express()
 
 //here we are configuring dist to serve app files
 app.use('/', serveStatic(path.join(__dirname, '/dist')))
@@ -25,6 +25,7 @@ app.get(/.*/, function (req, res) {
 const port = process.env.PORT || 8080
 app.listen(port)
 console.log(`app is listening on port: ${port}`)
+
 
 
 
