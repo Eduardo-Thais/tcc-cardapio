@@ -16,7 +16,7 @@ app.use(cors())
 
 
 app.get('/', function (req, res) {
-    res.render(path.join(__dirname + '/src/main.js'))
+    res.render(path.join(__dirname + 'dist'))
 })
 
 
